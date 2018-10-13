@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +14,34 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    try {
+        $encryptedContent = Storage::get('file.dat');
+        $decryptedContent = decrypt($encryptedContent);
+    } catch (Exception $e) {
+        $encryptedContent = null;
+        $decryptedContent = null;
+    }
+
+    return view('welcome', compact('encryptedContent', 'decryptedContent'));
+});
+
+Route::post('/upload', function (Request $request) {
+
+    $request->validate([
+        'attachment' => ['required', 'file']
+    ]);
+
+    $file = $request->file('attachment');
+
+    // Get File Content
+    $fileContent = $file->get();
+
+    // Encrypt the content
+    $encryptedContent = encrypt($fileContent);
+
+    // Store file
+    Storage::put('file.dat', $encryptedContent);
+
+    return redirect()->back();
 });
