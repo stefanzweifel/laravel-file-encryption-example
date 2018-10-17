@@ -29,7 +29,7 @@ Route::get('/', function () {
 Route::post('/upload', function (Request $request) {
 
     $request->validate([
-        'attachment' => ['required', 'file']
+        'attachment' => ['required', 'file', 'mimes:jpeg,bmp,png']
     ]);
 
     $file = $request->file('attachment');

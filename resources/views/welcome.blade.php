@@ -12,7 +12,8 @@
 
         <div class="container max-w-lg m-auto my-12">
 
-            <h1 class="text-grey-darkest">File Encryption Example</h1>
+            <h1 class="text-grey-darkest mb-2">File Encryption Example</h1>
+            <p class="mb-4">Upload any image. The encrypted version will be stored in <code>/storage/app/file.dat</code></p>
 
             <form class="w-full my-6" action="/upload" method="post" enctype="multipart/form-data">
                 @csrf()
@@ -23,7 +24,7 @@
             <div class="flex border-t">
                 <div class="w-1/2">
                     <h2 class="mt-6 mb-4">Decrypted Content</h2>
-                    {!! $decryptedContent !!}
+                    <img src="data:image/png;base64,{!! base64_encode($decryptedContent) !!}" alt="">
                 </div>
                 <div class="w-1/2">
                     <h2 class="mt-6 mb-4">Encrypted Content</h2>
