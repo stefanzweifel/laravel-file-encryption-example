@@ -21,19 +21,14 @@
                 <button type="submit" class="bg-blue text-white py-2 px-4 rounded">Upload and encrypt</button>
             </form>
 
-            <div class="flex border-t">
-                <div class="w-1/2">
-                    <h2 class="mt-6 mb-4">Decrypted Content</h2>
+            @if ($decryptedContent)
+                <div class="border-t">
+                    <h2 class="mt-6 mb-2">Decrypted Content</h2>
                     <img src="data:image/png;base64,{!! base64_encode($decryptedContent) !!}" alt="">
                 </div>
-                <div class="w-1/2">
-                    <h2 class="mt-6 mb-4">Encrypted Content</h2>
-                    <pre
-                        style="word-break: break-word; height: 25em;"
-                        class="p-6 rounded bg-grey-light overflow-scroll"
-                    >{{ $encryptedContent }}</pre>
-                </div>
-            </div>
+
+                <a href="/download" class="inline-block mt-2">Download Image</a>
+            @endif
 
         </div>
 

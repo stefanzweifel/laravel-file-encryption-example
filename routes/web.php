@@ -45,3 +45,14 @@ Route::post('/upload', function (Request $request) {
 
     return redirect()->back();
 });
+
+Route::get('/download', function () {
+
+    $encryptedContent = Storage::get('file.dat');
+    $decryptedContent = decrypt($encryptedContent);
+
+    return response()->streamDownload(function() use ($decryptedContent) {
+        echo $decryptedContent;
+    }, 'file.jpg');
+
+});
