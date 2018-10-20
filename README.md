@@ -1,6 +1,6 @@
 # laravel-file-encryption-example
 
-A Laravel example app to showcase backend file encryption.
+A Laravel example app to showcase backend file encryption. Most of the logic is in the [web.php](https://github.com/stefanzweifel/laravel-file-encryption-example/blob/master/routes/web.php) file.
 
 ## Install
 
